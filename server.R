@@ -131,7 +131,8 @@ shinyServer(function(input, output, session) {
       plot(0:15, post.vector()$pPost, type = "l", 
            xlab = "Number of Abnormal WMS-IV Adult Battery Test Scores", 
            ylab = "Post-test Probability of Normal Cognition",
-           main = paste0("Base Rate of Normal Cognition = ", round(input$Prior*100,2), "%"))
+           main = paste0("Base Rate of Normal Cognition = ", round(input$Prior*100,2), "%"),
+           ylim = c(0, 1))
       axis(1, at = 0:15, labels = 0:15)
       abline(v = input$kATS, col = "red", lty = 2)})
   })
