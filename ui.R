@@ -34,10 +34,8 @@ shinyUI(fluidPage(
                   numericInput("Cutoff", "Scaled Score Cutoff (<):",7,min=2,max=19),
                   numericInput("kATS", "Number of Abnormal Test Scores:", 0, min = 0, max = 15),
                   numericInput("Prior", "Pre-test Probability of Normal Cognition:", .25, min = 0, max = 1, step = .01),
-                  numericInput("NSims", "Number of Monte Carlo Simulations:", 500000, min = 100000, max = 1000000, step = 100000),
                   br(),
-                  actionButton("calc", "Calculate"),
-                  progressInit()),
+                  actionButton("calc", "Calculate")),
            column(7, 
                   h3(textOutput("Posterior")),
                   plotOutput("plot"))
