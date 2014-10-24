@@ -26,8 +26,8 @@ options(scipen = 10)
 
 shinyUI(fluidPage(
   # Application Title
-  title= "Bayesian Estimation of Post-test Probabilities for Normal Cognition using the Wechsler Memory Scales - 4th Edition (WMS-IV)",
-  fluidRow(h2("Bayesian Estimation of Post-test Probabilities for Normal Cognition using the Wechsler Memory Scales - 4th Edition (WMS-IV)")),
+  title= "Bayesian Estimation of Post-test Probabilities for Normal Cognition using the Wechsler Memory Scale - 4th Edition (WMS-IV)",
+  fluidRow(h2("Bayesian Estimation of Post-test Probabilities for Normal Cognition using the Wechsler Memory Scale - 4th Edition (WMS-IV)")),
   fluidRow(HTML("Based on Gavett, B. E. (2014). A Bayesian Approach to Interpreting Base Rates of Abnormal Test Scores in Cognitively Healthy and Clinical Samples. <i>Manuscript Under Review</i>.")),
   tags$hr(),
   fluidRow(column(5,

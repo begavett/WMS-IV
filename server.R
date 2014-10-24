@@ -23,7 +23,6 @@
 library(shiny)
 library(shinyIncubator)
 
-# Define server logic required to calculate various reliable change indices
 shinyServer(function(input, output, session) {
   
   post.vector <- reactive({
