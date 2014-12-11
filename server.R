@@ -20,6 +20,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+pkg <- c("shiny", "shinyIncubator")
+new.pkg <- pkg[!(pkg %in% installed.packages())]
+if (length(new.pkg)) {
+  install.packages(new.pkg)
+}
+
 library(shiny)
 library(shinyIncubator)
 
@@ -34,16 +40,16 @@ shinyServer(function(input, output, session) {
         sg.sub.m <- c(7.7, 7.4, 8, 8, 7.5, 7.8, 8.3, 8.3, 8.1, 8.4, 8.5, 7.6, 7.7, 7.8, 7.8)
         sg.sub.s <- c(3.9, 4, 3.7, 3.9, 3.8, 3.5, 3.3, 3.3, 3.3, 3.4, 3.2, 3.8, 3.8, 3.4, 3.5)
         
-        cumpct.a <- data.frame(read.csv("CumPct_A.csv", header=T)[2:18])
-        cumpct.sg <- data.frame(read.csv("CumPct_SG.csv", header=T)[2:18])
+        pct.a <- data.frame(read.csv("Pct_A.csv", header=T)[2:18])
+        pct.sg <- data.frame(read.csv("Pct_SG.csv", header=T)[2:18])
               
         clin.br <- input$Prior
         
         post.var <- data.frame(Cutoff = rep(input$Cutoff, 16), 
                                kATS = 0:15, 
                                pNC = rep(clin.br, 16))
-        post.var$pIN <- t(cumpct.a[cumpct.a$cutoff == input$Cutoff, 2:17])
-        post.var$pIC <- t(cumpct.sg[cumpct.sg$cutoff == input$Cutoff, 2:17])
+        post.var$pIN <- t(pct.a[pct.a$cutoff == input$Cutoff, 2:17])
+        post.var$pIC <- t(pct.sg[pct.sg$cutoff == input$Cutoff, 2:17])
         post.var$pPost <- with(post.var, (pIN * pNC)/((pIN * pNC)+(pIC * (1-pNC))))
         return(post.var)
     })
