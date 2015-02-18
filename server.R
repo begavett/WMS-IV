@@ -32,9 +32,9 @@ library(shinyIncubator)
 shinyServer(function(input, output, session) {
   
   post.vector <- reactive({
-    if (input$calc == 0)
-      return()
-    isolate({
+    #if (input$calc == 0)
+     # return()
+    #isolate({
         a.sub.m <- c(rep(10,11), 10.1, 10, 10, 10)
         a.sub.s <- c(rep(3, 11), 3.1, 3.1, 3, 3)
         sg.sub.m <- c(7.7, 7.4, 8, 8, 7.5, 7.8, 8.3, 8.3, 8.1, 8.4, 8.5, 7.6, 7.7, 7.8, 7.8)
@@ -52,28 +52,30 @@ shinyServer(function(input, output, session) {
         post.var$pIC <- t(pct.sg[pct.sg$cutoff == input$Cutoff, 2:17])
         post.var$pPost <- with(post.var, (pIN * pNC)/((pIN * pNC)+(pIC * (1-pNC))))
         return(post.var)
-    })
+    #})
   })
   
   
   output$Posterior <- renderText({
-    if (input$calc == 0)
-      return()
-    isolate({
+   # if (input$calc == 0)
+    #  return()
+    #isolate({
       paste0("Post-test Probability of Normal Cognition: ", 
-             round(100*post.vector()$pPost[input$kATS+1], 2), "%")})
+             round(100*post.vector()$pPost[input$kATS+1], 2), "%")
+    #  })
   })
   
   output$plot <- renderPlot({
-    if (input$calc == 0)
-      return()
-    isolate({
+    #if (input$calc == 0)
+     # return()
+    #isolate({
       plot(0:15, post.vector()$pPost, type = "l", 
            xlab = "Number of Abnormal WMS-IV Adult Battery Test Scores", 
            ylab = "Post-test Probability of Normal Cognition",
            ylim = c(0, 1),
            main = paste0("Base Rate of Normal Cognition = ", round(input$Prior*100,2), "%"))
       axis(1, at = 0:15, labels = 0:15)
-      abline(v = input$kATS, col = "red", lty = 2)})
+      abline(v = input$kATS, col = "red", lty = 2)
+     # })
   })
 })
